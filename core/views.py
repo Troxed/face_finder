@@ -37,7 +37,7 @@ class UploadPhotosView(FormView):
 
         for (top, right, bottom, left), face_encoding, landmarks in zip(group_face_locations, group_face_encodings,
                                                                         group_face_landmarks):
-            matches = face_recognition.compare_faces([person_face_encoding], face_encoding, tolerance=.4)
+            matches = face_recognition.compare_faces([person_face_encoding], face_encoding, tolerance=.45)
 
             # If match
             if True in matches:
