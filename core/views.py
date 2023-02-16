@@ -22,7 +22,8 @@ class UploadPhotosView(FormView):
 
         # Person encodings and landmarks
         person_photo = face_recognition.load_image_file(person_photo)
-        person_face_encoding = face_recognition.face_encodings(person_photo)[0]
+        person_face_location = face_recognition.face_locations(person_photo)
+        person_face_encoding = face_recognition.face_encodings(person_photo, person_face_location, model='large')[0]
         person_face_landmarks = face_recognition.face_locations(person_photo)
 
         # Group encodings and landmarks
@@ -37,14 +38,14 @@ class UploadPhotosView(FormView):
 
         for (top, right, bottom, left), face_encoding, landmarks in zip(group_face_locations, group_face_encodings,
                                                                         group_face_landmarks):
-            matches = face_recognition.compare_faces([person_face_encoding], face_encoding, tolerance=.425)
+            matches = face_recognition.compare_faces([person_face_encoding], face_encoding, tolerance=.48)
 
             # If match
             if True in matches:
                 first_match_index = matches.index(True)
 
                 # Draw box around face
-                draw.rectangle(((left, top), (right, bottom)), outline=(0, 0, 0))
+                draw.rectangle(((left - 5, top - 5), (right + 5, bottom + 5)), outline=(0, 255, 0), width=3)
 
         # Save the image to a buffer
         buf = io.BytesIO()
