@@ -54,13 +54,13 @@ class UploadPhotosView(FormView):
                 confidence = face_recognition.face_distance([person_face_encoding], face_encoding)[first_match_index]
                 confidence_percentage = round((1 - confidence) * 100, 2)
                 draw.text((left, bottom + 10), f"Confidence: {confidence_percentage}%", fill=(0, 255, 0),
-                          font=ImageFont.truetype("arial", 28))
+                          font=ImageFont.truetype("arial.ttf", 28))
 
         if match_count < 1:
             # Write "No matches found" on image
             font_ratio = 1 / 10
             font_size = int(min(pil_image.size) * font_ratio)
-            font = ImageFont.truetype("arial", font_size)
+            font = ImageFont.truetype("arial.ttf", font_size)
             color = (255, 0, 0, 255)
             message = "No matches found"
             text_image = Image.new('RGBA', (width, height), (255, 255, 255, 120))
