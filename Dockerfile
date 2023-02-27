@@ -10,6 +10,6 @@ RUN pip install -r requirements.txt
 COPY arial.ttf /usr/share/fonts/truetype/
 COPY . /code/
 WORKDIR /code/face_finder_react
-RUN npm install
+RUN pip install npm
 RUN npm run build
 WORKDIR /code/
