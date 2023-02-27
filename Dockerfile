@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y fontconfig
 RUN pip install cmake
 RUN pip install dlib
 RUN pip install -r requirements.txt
+RUN pip install npm
 COPY arial.ttf /usr/share/fonts/truetype/
 COPY . /code/
-RUN npm install
 RUN npm run build
