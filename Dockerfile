@@ -6,10 +6,10 @@ COPY requirements.txt /code/
 RUN apt-get update && apt-get install -y fontconfig
 RUN pip install cmake
 RUN pip install dlib
+RUN pip install npm
 RUN pip install -r requirements.txt
 COPY arial.ttf /usr/share/fonts/truetype/
 COPY . /code/
 WORKDIR /code/face_finder_react
-RUN pip install npm
 RUN npm run build
 WORKDIR /code/
