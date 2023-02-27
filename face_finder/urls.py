@@ -17,12 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
 from core import views
 
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name='index.html')),
+    path('', RedirectView.as_view(url='/face_finder_react/build/index.html', permanent=False)),
     path('process_images/', views.process_images, name='process_images'),
     path('random_face/', views.random_face, name='random_face'),
     path('random/', views.random_face, name='random_face'),
