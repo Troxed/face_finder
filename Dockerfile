@@ -10,4 +10,3 @@ RUN pip install -r requirements.txt
 RUN pip install npm
 COPY arial.ttf /usr/share/fonts/truetype/
 COPY . /code/
-RUN npm run build
