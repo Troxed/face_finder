@@ -15,11 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
-
+from django.conf.urls.static import static
+from django.conf import settings
+from django.views.generic import TemplateView
+from core import views
 
 
 urlpatterns = [
-    path("", include('core.urls')),
+    path("", TemplateView.as_view(template_name='index.html')),
+    path('process_images/', views.process_images, name='process_images'),
+    path('random_face/', views.random_face, name='random_face'),
+    path('random/', views.random_face, name='random_face'),
     path("admin/", admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

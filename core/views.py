@@ -1,24 +1,19 @@
-from django.shortcuts import render, redirect
-from django.views.generic.edit import FormView
-from django.urls import reverse_lazy
-from .forms import UploadPhotosForm
-
+from django.http import JsonResponse
+from django.http import HttpResponse
 from PIL import Image, ImageDraw, ImageFont
 import face_recognition
 import base64
+import random
 import io
+import os
 
 
 
-class UploadPhotosView(FormView):
-    template_name = 'core/index.html'
-    form_class = UploadPhotosForm
-    success_url = reverse_lazy('result')
 
-    def form_valid(self, form):
-        # Get the uploaded files from the form
-        person_photo = form.cleaned_data['person_photo']
-        group_photo = form.cleaned_data['group_photo']
+def process_images(request):
+    if request.method == 'POST':
+        person_photo = request.FILES.get("imageFile1")
+        group_photo = request.FILES.get("imageFile2")
 
         # Person encodings and landmarks
         person_photo = face_recognition.load_image_file(person_photo)
@@ -72,20 +67,50 @@ class UploadPhotosView(FormView):
             pil_image = pil_image.convert('RGBA')
             pil_image = Image.alpha_composite(pil_image, text_image)
 
-
-
-
-
         # Save the image to a buffer
         buf = io.BytesIO()
         pil_image.save(buf, format='PNG')
-        image_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
-
-
-
+        image_data = base64.b64encode(buf.getvalue()).decode("utf-8")
         del draw
 
-        # Redirect to the result page
-        return render(self.request, 'core/result.html', {'image': image_base64})
+        # Return image
+        response = HttpResponse(content_type='image/png')
+        response.write(image_data)
+        return response
 
+
+def random_face(request):
+    if request.method == 'GET':
+        # specify the folder containing the preset photos
+        presets_folder = 'media/presets/'
+
+
+        # get a list of all folders in the presets folder
+        preset_folders = [f for f in os.listdir(presets_folder) if os.path.isdir(os.path.join(presets_folder, f))]
+
+        # randomly choose one of the preset folders
+        selected_folder = random.choice(preset_folders)
+
+        # get the path to the selected folder
+        folder_path = os.path.join(presets_folder, selected_folder)
+
+        # get a list of all photos in the selected folder
+        photos = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+
+        # find the photo that matches the folder name
+        person_photo = os.path.join(folder_path, selected_folder + '.jpg')
+
+        # find the photo that ends with 'group'
+        group_photo = ''
+        for photo in photos:
+            if photo.endswith(' Group.jpg'):
+                group_photo = os.path.join(folder_path, photo)
+                break
+
+        person_photo = person_photo.replace('\\', '/')
+        group_photo = group_photo.replace('\\', '/')
+
+        # create a JSON response with the photo URLs
+        data = {'person_photo': person_photo, 'group_photo': group_photo}
+        return JsonResponse(data)
 

@@ -25,42 +25,114 @@
       </div>
     </div>
     <div class="mt-14 text-center">
+      <button id="random-face-btn" type="button" class="py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Random Face</button>
+    </div>
+    <div class="mt-4 text-center">
       <button type="submit" class="py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Find Face</button>
     </div>
   </form>
 </div>
 
 <style>
-  #person-photo-preview, #group-photo-preview {
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
+#person-photo-preview, #group-photo-preview {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
-  #person-photo-preview:hover, #group-photo-preview:hover {
-    opacity: 0.8;
-  }
+#person-photo-preview:hover, #group-photo-preview:hover,
+#person-photo-preview.has-image, #group-photo-preview.has-image {
+  opacity: 0.8;
+}
 </style>
 
 <script>
-  function previewImage(input, img) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        img.css('background-image', `url(${e.target.result})`);
-        img.find('span').hide();
-      }
-      reader.readAsDataURL(input.files[0]);
+
+  function previewImage(img, file) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      img.css('background-image', `url(${e.target.result})`);
+      img.find('span').hide();
     }
+    reader.readAsDataURL(file);
   }
 
+  $('#random-face-btn').click(function(event) {
+    event.preventDefault(); // prevent the form from submitting normally
+    $.ajax({
+      url: '/random',
+      type: 'GET',
+      success: function(response) {
+        // Update the preview windows with the new images
+        if (response.person_photo) {
+          previewImage($('#person-photo-preview'), response.person_photo);
+        }
+        if (response.group_photo) {
+          previewImage($('#group-photo-preview'), response.group_photo);
+        }
+      },
+      error: function(xhr, status, error) {
+        // Handle error
+      }
+    });
+  });
+
   $('#person-photo').on('change', function() {
-    previewImage(this, $('#person-photo-preview'));
+    previewImage($('#person-photo-preview'), this.files[0]);
   });
 
   $('#group-photo').on('change', function() {
-    previewImage(this, $('#group-photo-preview'));
+    previewImage($('#group-photo-preview'), this.files[0]);
   });
+
+
+
 </script>
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var personPhoto = $('#person-photo')[0].files[0];
+    var groupPhoto = $('#group-photo')[0].files[0];
+    var formData = new FormData();
+    if ($('#person-photo-preview img').length > 0 && $('#group-photo-preview img').length > 0) {
+      // Use the two random images returned by the server
+      var personPhoto = dataURItoBlob($('#person-photo-preview img').attr('src'));
+      var groupPhoto = dataURItoBlob($('#group-photo-preview img').attr('src'));
+      formData.append('person_photo', personPhoto, 'person_photo.jpg');
+      formData.append('group_photo', groupPhoto, 'group_photo.jpg');
+    } else if (personPhoto && groupPhoto) {
+      // Use the two images selected by the user
+      formData.append('person_photo', personPhoto);
+      formData.append('group_photo', groupPhoto);
