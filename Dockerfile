@@ -20,9 +20,16 @@ WORKDIR /face_finder/face_finder_react
 COPY package.json .
 COPY package-lock.json .
 RUN npm install
+
+# Move back to Django app directory
+WORKDIR /face_finder
+
+# Copy the entire "face_finder_react" directory to the Docker image
+COPY face_finder_react /face_finder/face_finder_react/
+
+# Run the build command from the package.json in "face_finder_react" directory
 RUN npm run build
 
-# Copy React app files back to Django app directory
-WORKDIR /face_finder
+# Copy other files to Django app directory
 COPY arial.ttf /usr/share/fonts/truetype/
 COPY . /face_finder/
