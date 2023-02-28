@@ -1,35 +1,41 @@
-FROM python:3.10.0
+# Use the official Python image as the base image
+FROM python:3.9-slim-buster
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+# Set the working directory
+WORKDIR /app
 
-WORKDIR /code
+# Copy the requirements file to the container
+COPY requirements.txt .
 
-COPY requirements.txt /code
-RUN apt-get update && apt-get install -y fontconfig
-RUN pip install cmake
-RUN pip install dlib
-RUN pip install -r requirements.txt
+# Install fontconfig and dlib dependencies
+RUN apt-get update && apt-get install -y fontconfig \
+    && pip install cmake \
+    && pip install dlib \
+    && pip install -r requirements.txt
 
-# Change directory to React app and install dependencies
-WORKDIR /code/face_finder_react
+# Install Node.js for building React app
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get update && apt-get install -y nodejs
 
-# Install Node.js and npm
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get update && apt-get install -y nodejs
+# Set the working directory to the React app directory
+WORKDIR /app/face_finder/face_finder_react
 
-COPY package.json .
-COPY package-lock.json .
+# Copy package.json and package-lock.json to the container
+COPY face_finder/face_finder_react/package*.json ./
+
+# Install NPM
 RUN npm install
-COPY ../ /code
+
+# Build the React app
 RUN npm run build
 
-# Move back to Django app directory
-WORKDIR /code
+# Set the working directory back to the root directory
+WORKDIR /app
 
-# Copy the entire "face_finder_react" directory to the Docker image
-COPY face_finder_react .
+# Copy the React app to the root directory
+COPY face_finder/face_finder_react/build face_finder_react/build
 
-# Copy other files to Django app directory
-COPY arial.ttf /usr/share/fonts/truetype
+# Copy the entire root directory to the container
+COPY . .
+
 
