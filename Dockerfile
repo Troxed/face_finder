@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /face_finder
 
-COPY requirements.txt /face_finder/
+COPY requirements.txt .
 RUN apt-get update && apt-get install -y fontconfig
 RUN pip install cmake
 RUN pip install dlib
@@ -18,8 +18,8 @@ WORKDIR /face_finder/face_finder_react
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 
-COPY package.json .
-COPY package-lock.json .
+COPY face_finder_react/package.json .
+COPY face_finder_react/package-lock.json .
 RUN npm install
 RUN npm run build
 
