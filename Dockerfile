@@ -18,8 +18,8 @@ WORKDIR /face_finder/face_finder_react
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 
-COPY face_finder/face_finder_react/package.json .
-COPY face_finder/face_finder_react/package-lock.json .
+COPY ./package.json .
+COPY ./package-lock.json .
 RUN npm install
 RUN npm run build
 
