@@ -8,10 +8,10 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Install fontconfig and dlib dependencies
-RUN apt-get update && apt-get install -y fontconfig \
-    && pip install cmake \
-    && pip install dlib \
-    && pip install -r requirements.txt
+RUN apt-get update && apt-get install -y fontconfig
+RUN install cmake
+RUN pip install dlib
+RUN pip install -r requirements.txt
 
 # Install Node.js for building React app
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
