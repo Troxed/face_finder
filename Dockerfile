@@ -7,21 +7,22 @@ ENV PYTHONUNBUFFERED=1
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 
-WORKDIR /code
+WORKDIR /face_finder
 
-COPY requirements.txt /code/
+COPY requirements.txt /face_finder/
 RUN apt-get update && apt-get install -y fontconfig
 RUN pip install cmake
 RUN pip install dlib
 RUN pip install -r requirements.txt
 
 # Change directory to React app and install dependencies
-WORKDIR /code/face_finder_react
+WORKDIR /face_finder/face_finder_react
 COPY package.json .
 COPY package-lock.json .
 RUN npm install
+RUN npm run build
 
 # Copy React app files back to Django app directory
-WORKDIR /code
+WORKDIR /face_finder
 COPY arial.ttf /usr/share/fonts/truetype/
-COPY . /code/
+COPY . /face_finder/
