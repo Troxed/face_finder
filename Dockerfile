@@ -22,6 +22,7 @@ COPY package-lock.json .
 RUN npm install
 
 # Build React app
+WORKDIR /code/face_finder_react
 RUN npm run build
 
 # Copy React app files back to Django app directory
