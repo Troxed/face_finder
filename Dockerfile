@@ -9,7 +9,7 @@ COPY requirements.txt .
 
 # Install fontconfig and dlib dependencies
 RUN apt-get update && apt-get install -y fontconfig
-RUN install cmake
+RUN pip install cmake
 RUN pip install dlib
 RUN pip install -r requirements.txt
 
