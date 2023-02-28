@@ -22,7 +22,7 @@ COPY package-lock.json .
 RUN npm install
 
 # Build React app
-RUN npm run
+RUN npm run build
 
 # Copy React app files back to Django app directory
 WORKDIR /code
