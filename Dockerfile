@@ -32,9 +32,6 @@ RUN npm run build
 # Set the working directory back to the root directory
 WORKDIR /app
 
-# Copy the React app to the root directory
-COPY face_finder/face_finder_react/build face_finder_react/build
-
 # Copy the entire root directory to the container
 COPY . .
 
