@@ -12,10 +12,9 @@ RUN apt-get update && apt-get install -y fontconfig
 RUN pip install cmake
 RUN pip install dlib
 RUN pip install -r requirements.txt
+RUN npm install
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update && apt-get install -y nodejs
-RUN npm install
-RUN npm install react-scrpits
 RUN npm run build
 
 
