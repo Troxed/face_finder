@@ -1,4 +1,5 @@
 FROM python:3.10.0
+FROM node:alpine
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
@@ -14,14 +15,6 @@ RUN pip install dlib
 RUN pip install -r requirements.txt
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update && apt-get install -y nodejs
-
-
-
-FROM node:alpine
-WORKDIR /app/face_finder_react
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get update && apt-get install -y nodejs
-COPY package.json .
-COPY package-lock.json .
 RUN npm install
 RUN npm run build
+
