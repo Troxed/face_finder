@@ -12,11 +12,11 @@ RUN apt-get update && apt-get install -y fontconfig
 RUN pip install cmake
 RUN pip install dlib
 RUN pip install -r requirements.txt
+RUN npm install
 
 # Change directory to React app and install dependencies
 WORKDIR /app/face_finder_react
-# Install Node.js and npm
-RUN npm install
+# Install Node.js
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 RUN npm run build
