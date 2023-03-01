@@ -3,7 +3,7 @@ FROM python:3.10.0
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-COPY face_finder/face_finder_react/package.json face_finder/face_finder_react/package-lock.json /app/
+COPY /face_finder_react/package.json /face_finder_react/package-lock.json /app/
 
 WORKDIR /app
 
