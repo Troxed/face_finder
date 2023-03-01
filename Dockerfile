@@ -14,6 +14,9 @@ RUN pip install -r requirements.txt
 
 # Change directory to React app and install dependencies
 WORKDIR /code/face_finder_react
+# Install Node.js and npm
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
+RUN apt-get update && apt-get install -y nodejs
 COPY package.json .
 COPY package-lock.json .
 RUN npm install
