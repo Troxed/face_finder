@@ -19,6 +19,8 @@ RUN apt-get update && apt-get install -y nodejs
 
 FROM node:alpine
 WORKDIR /app/face_finder_react
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
+RUN apt-get update && apt-get install -y nodejs
 COPY package.json .
 COPY package-lock.json .
 RUN npm install
