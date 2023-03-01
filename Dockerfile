@@ -13,9 +13,7 @@ RUN pip install cmake
 RUN pip install dlib
 RUN pip install -r requirements.txt
 
-# Install Node.js for building React app
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
-    && apt-get update && apt-get install -y nodejs
+COPY . .
 
 # Set the working directory to the React app directory
 WORKDIR /app/face_finder/face_finder_react
@@ -32,7 +30,5 @@ RUN npm run build
 # Set the working directory back to the root directory
 WORKDIR /app
 
-# Copy the entire root directory to the container
-COPY . .
 
 
