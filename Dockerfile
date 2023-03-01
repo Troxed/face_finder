@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y fontconfig
 RUN pip install cmake
 RUN pip install dlib
 RUN pip install -r requirements.txt
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
+RUN apt-get update && apt-get install -y nodejs
 
 
 
@@ -20,6 +22,4 @@ WORKDIR /app/face_finder_react
 COPY package.json .
 COPY package-lock.json .
 RUN npm install
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get update && apt-get install -y nodejs
 RUN npm run build
