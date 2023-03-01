@@ -5,8 +5,7 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-COPY requirements.txt /app
-COPY face_finder_react /app
+COPY . /app
 RUN apt-get update && apt-get install -y fontconfig
 RUN pip install cmake
 RUN pip install dlib
@@ -23,8 +22,7 @@ RUN npm install
 RUN npm run build
 
 # Copy React app files back to Django app directory
-WORKDIR /code
-COPY arial.ttf /usr/share/fonts/truetype/
-COPY . /code/
+WORKDIR /app
+COPY . /app
 
 
