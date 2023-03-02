@@ -1,4 +1,13 @@
-FROM node:16-alpine
+FROM python:3.10.0
+
+WORKDIR /app/
+
+COPY . .
+RUN apt-get update && apt-get install -y fontconfig
+RUN pip install cmake
+RUN pip install dlib
+RUN pip install -r requirements.txt
+
 
 WORKDIR /app/face_finder_react/
 
@@ -11,13 +20,4 @@ RUN rm -rf node_modules
 RUN npm install
 RUN npm run build
 
-
-FROM python:3.10.0
-
 WORKDIR /app/
-
-COPY . .
-RUN apt-get update && apt-get install -y fontconfig
-RUN pip install cmake
-RUN pip install dlib
-RUN pip install -r requirements.txt
