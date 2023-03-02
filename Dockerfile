@@ -16,8 +16,8 @@ RUN pip install -r requirements.txt
 
 # Change directory to React app and install dependencies
 WORKDIR /code/face_finder_react/
-COPY face_finder_react/package.json .
-COPY face_finder_react/package-lock.json .
+COPY /face_finder_react/package.json .
+COPY /face_finder_react/package-lock.json .
 RUN npm install
 
 # Copy React app files back to Django app directory
