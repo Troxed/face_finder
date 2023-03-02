@@ -14,6 +14,7 @@ WORKDIR /app/face_finder_react/
 COPY face_finder_react .
 ENV PATH /app/face_finder_react/node_modules/.bin:$PATH
 
+RUN npm install -g npm
 RUN npm install
 RUN npm install react-scripts@4.0.3
 RUN rm -rf node_modules
