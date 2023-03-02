@@ -15,9 +15,9 @@ WORKDIR /app/face_finder_react/
 
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update && apt-get install -y nodejs
+RUN npm install
 
 WORKDIR /app/
 
-RUN npm install --prefix ./face_finder_react/
 RUN npm run build --prefix ./face_finder_react/
 
