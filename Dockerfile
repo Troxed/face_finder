@@ -21,3 +21,5 @@ RUN npm install react-scripts@4.0.3
 RUN rm -rf node_modules
 RUN npm install
 RUN npm run build
+
+WORKDIR /app/
