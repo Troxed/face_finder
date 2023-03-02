@@ -5,11 +5,11 @@ WORKDIR /app
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 
-RUN pip install -r requirements.txt
+COPY requirements.txt .
 RUN apt-get update && apt-get install -y fontconfig
 RUN pip install cmake
 RUN pip install dlib
-COPY requirements.txt .
+RUN pip install -r requirements.txt
 
 COPY face_finder/ .
 COPY face_finder_react/ ./face_finder_react/
