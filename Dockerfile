@@ -18,8 +18,8 @@ COPY ./face_finder_react .
 
 WORKDIR /app/face_finder_react/
 
-COPY ./face_finder_react/package.json .
-COPY face_finder_react/package-lock.json .
+COPY face_finder/face_finder_react/package.json .
+COPY face_finder/face_finder_react/package-lock.json .
 
 
 RUN npm install
