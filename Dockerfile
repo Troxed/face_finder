@@ -1,5 +1,7 @@
 FROM python:3.10.0
 
+WORKDIR /app/
+
 COPY . .
 RUN apt-get update && apt-get install -y fontconfig
 RUN pip install cmake
