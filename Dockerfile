@@ -14,7 +14,7 @@ FROM node:16-alpine
 
 WORKDIR app/face_finder_react/
 
-CMD ls
+RUN ls
 
 RUN npm install
 RUN npm run build
