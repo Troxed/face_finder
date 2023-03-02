@@ -12,9 +12,13 @@ RUN pip install -r requirements.txt
 
 FROM node:16-alpine
 
-WORKDIR app/face_finder_react/
+WORKDIR /app/
+
 COPY /face_finder_react .
 
-RUN npm install app/face_finder_react/package.json
+WORKDIR app/face_finder_react/
+
+
+RUN npm install
 RUN npm run build
 
