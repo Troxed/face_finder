@@ -14,11 +14,11 @@ FROM node:16-alpine
 
 WORKDIR /app/
 
-COPY /face_finder_react .
+COPY ./face_finder_react .
 
 WORKDIR /app/face_finder_react/
 
-COPY face_finder_react/package.json .
+COPY ./face_finder_react/package.json .
 COPY face_finder_react/package-lock.json .
 
 
