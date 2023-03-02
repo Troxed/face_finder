@@ -13,7 +13,7 @@ RUN pip install -r requirements.txt
 
 COPY face_finder .
 COPY face_finder_react .
-COPY face_finder_react/package*.json face_finder_react
+COPY face_finder_react/package*.json app/face_finder_react
 
 ENV NODE_ENV=production
 
