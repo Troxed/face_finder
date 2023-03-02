@@ -8,7 +8,7 @@ RUN pip install -r requirements.txt
 
 
 
-COPY /face_finder_react/package.json /app/face_finder_react
+COPY ./face_finder_react/package.json /app/face_finder_react
 WORKDIR /app/face_finder_react/
 
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
