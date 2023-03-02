@@ -122,7 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'face_finder_react/build/staticfiles'
+STATIC_ROOT = 'face_finder_react/staticfiles'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'face_finder_react/build/static')
 ]
