@@ -12,8 +12,8 @@ RUN pip install -r requirements.txt
 
 FROM node:16-alpine
 
-WORKDIR face_finder_react/
+WORKDIR app/face_finder_react/
 
-RUN npm install
+RUN npm ci
 RUN npm run build
 
