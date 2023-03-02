@@ -18,4 +18,5 @@ RUN apt-get update && apt-get install -y nodejs
 
 
 RUN npm install
-RUN sudo npm run build
+RUN npm install react-scripts
+RUN npm run build
