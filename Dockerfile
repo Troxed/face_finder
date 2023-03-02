@@ -1,7 +1,5 @@
 FROM python:3.10.0
 
-WORKDIR /app/
-
 COPY . .
 RUN apt-get update && apt-get install -y fontconfig
 RUN pip install cmake
@@ -16,7 +14,8 @@ WORKDIR /app/face_finder_react/
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 
+WORKDIR /app/
 
-RUN npm install
-RUN npm run build
+RUN npm install --prefix ./face_finder_react/
+RUN npm run build --prefix ./face_finder_react/
 
