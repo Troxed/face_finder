@@ -17,4 +17,5 @@ COPY face_finder_react .
 ENV PATH /app/face_finder_react/node_modules/.bin:$PATH
 
 RUN npm install
+RUN chmod +x /app/face_finder_react/node_modules/.bin/react-scripts
 RUN npm run build
