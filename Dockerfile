@@ -5,7 +5,7 @@ WORKDIR /app
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 
-COPY face_finder/requirements.txt .
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 RUN apt-get update && apt-get install -y fontconfig
 RUN pip install cmake
