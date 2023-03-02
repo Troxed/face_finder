@@ -14,7 +14,7 @@ FROM node:16-alpine
 
 WORKDIR /app/
 
-COPY ./face_finder_react .
+COPY . .
 
 WORKDIR /app/face_finder_react/
 
