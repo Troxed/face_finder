@@ -17,8 +17,9 @@ COPY face_finder_react/package*.json face_finder_react
 
 ENV NODE_ENV=production
 
-RUN cd face_finder_react && npm install
-RUN cd face_finder_react && npm run build
+WORKDIR /app/face_finder_react
 
+RUN npm install
+RUN npm run build
 
 
