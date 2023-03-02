@@ -16,7 +16,7 @@ WORKDIR /app/
 
 COPY /face_finder_react .
 
-WORKDIR app/face_finder_react/
+WORKDIR /face_finder_react/
 
 
 RUN npm install
