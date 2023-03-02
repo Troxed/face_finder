@@ -12,7 +12,7 @@ RUN pip install dlib
 RUN pip install -r requirements.txt
 
 COPY face_finder/ .
-COPY face_finder_react/ ./face_finder_react/
+COPY face_finder_react/ .
 COPY face_finder_react/package*.json .
 
 ENV NODE_ENV=production
