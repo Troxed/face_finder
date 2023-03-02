@@ -15,6 +15,6 @@ FROM node:16-alpine
 WORKDIR app/face_finder_react/
 COPY /face_finder_react .
 
-RUN npm install
+RUN npm install app/face_finder_react/package.json
 RUN npm run build
 
