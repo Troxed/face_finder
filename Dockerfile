@@ -12,7 +12,7 @@ RUN pip install -r requirements.txt
 
 
 WORKDIR /app/face_finder_react/
-
+ENV PATH /app/node_modules/.bin:$PATH
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 
