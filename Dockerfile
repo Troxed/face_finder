@@ -15,5 +15,5 @@ ENV PATH /app/face_finder_react/node_modules/.bin:$PATH
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 RUN npm install
-RUN npm install react-scripts
+RUN npm config set user root
 RUN npm run build
