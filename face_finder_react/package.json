@@ -1,6 +1,5 @@
 {
   "name": "face_finder_react",
-  "homepage": "/face_finder_react/build",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
