@@ -1,6 +1,6 @@
 {
   "name": "face_finder_react",
-  "homepage": "https://facefinder.up.railway.app",
+  "homepage": "https://facefinder.up.railway.app/face_finder_react/build",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
