@@ -82,7 +82,7 @@ def process_images(request):
 def random_face(request):
     if request.method == 'GET':
         # specify the folder containing the preset photos
-        presets_folder = 'media/presets/'
+        presets_folder = 'presets/'
 
 
         # get a list of all folders in the presets folder
