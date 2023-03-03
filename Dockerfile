@@ -23,3 +23,5 @@ RUN npm install
 RUN npm run build
 
 WORKDIR /app/
+
+RUN python manage.py collectstatic
