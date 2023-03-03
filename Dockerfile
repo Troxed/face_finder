@@ -20,9 +20,5 @@ RUN npm install react-scripts@4.0.3
 RUN rm -rf node_modules
 RUN npm install
 RUN npm run build
-ENV NODE_ENV=production
-RUN npm install -g serve
-EXPOSE 80
-CMD ["serve", "-s", "build"]
 
 WORKDIR /app/
