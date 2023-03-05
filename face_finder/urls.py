@@ -26,6 +26,7 @@ urlpatterns = [
     path('process_images/', views.process_images, name='process_images'),
     path('random_face/', views.random_face, name='random_face'),
     path('random/', views.random_face, name='random_face'),
+    path('get_csrf_token/', views.get_csrf_token, name='get_csrf_token'),
     path("admin/", admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

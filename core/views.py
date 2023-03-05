@@ -1,4 +1,4 @@
-from django.views.decorators.csrf import ensure_csrf_cookie
+from django.middleware.csrf import get_token
 from django.http import JsonResponse
 from django.http import HttpResponse
 from PIL import Image, ImageDraw, ImageFont
@@ -9,8 +9,10 @@ import io
 import os
 
 
+def get_csrf_token(request):
+    return JsonResponse({'csrfToken': get_token(request)})
 
-@ensure_csrf_cookie
+
 def process_images(request):
     if request.method == 'POST':
         person_photo = request.FILES.get("imageFile1")

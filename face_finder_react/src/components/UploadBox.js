@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ImageInputBox from "./ImageInputBox";
 import RandomFaceButton from "./RandomFaceButton";
 import FindFaceButton from "./FindFaceButton";
@@ -11,10 +11,18 @@ const UploadBox = ({ setImageData }) => {
   const [imageFile1, setImageFile1] = useState(null);
   const [imageFile2, setImageFile2] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [csrfToken, setCsrfToken] = useState('');
+
+
+  useEffect(() => {
+    fetch('/get_csrf_token/')
+      .then(response => response.json())
+      .then(data => setCsrfToken(data.csrfToken))
+      .catch(error => console.error('Error fetching CSRF token:', error));
+  }, []);
 
 
   const handleFindFace = () => {
-    const token = getCookie('csrftoken');
     const formData = new FormData();
     formData.append("imageFile1", imageFile1);
     formData.append("imageFile2", imageFile2);
@@ -23,7 +31,7 @@ const UploadBox = ({ setImageData }) => {
     fetch("/process_images/", {
       method: "POST",
       headers: {
-        "X-CSRFToken": token,
+        "X-CSRFToken": csrfToken,
       },
       body: formData,
     })
