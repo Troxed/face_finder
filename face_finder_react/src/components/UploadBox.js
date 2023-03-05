@@ -97,7 +97,7 @@ const UploadBox = ({ setImageData }) => {
     <div className="upload-box">
     {isLoading && (
       <div className="loading-container">
-        <MoonLoader size={100} color={"#2100a6"} loading={isLoading} />
+        <MoonLoader size={100} color={"#0024e7"} loading={isLoading} />
       </div>
     )}
       <div className="images-box">
