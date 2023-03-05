@@ -32,9 +32,11 @@ header {
   z-index: 100;
 }
 
+
 .images-box {
   display: flex;
   justify-content: center;
+  font-size: small;
 }
 
 .image-input-container {
