@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.http import JsonResponse
 from django.http import HttpResponse
 from PIL import Image, ImageDraw, ImageFont
@@ -9,7 +10,7 @@ import os
 
 
 
-
+@ensure_csrf_cookie
 def process_images(request):
     if request.method == 'POST':
         person_photo = request.FILES.get("imageFile1")
