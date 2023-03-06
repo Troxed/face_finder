@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ImageInputBox from "./ImageInputBox";
 import RandomFaceButton from "./RandomFaceButton";
 import FindFaceButton from "./FindFaceButton";
-import { MoonLoader } from "react-spinners";
+import { FadeLoader } from "react-spinners";
 
 
 const UploadBox = ({ setImageData }) => {
@@ -97,7 +97,7 @@ const UploadBox = ({ setImageData }) => {
     <div className="upload-box">
     {isLoading && (
       <div className="loading-container">
-        <MoonLoader size={100} color={"#0024e7"} loading={isLoading} />
+        <FadeLoader size={100} color={"#1745ff"} loading={isLoading} />
       </div>
     )}
       <div className="images-box">
