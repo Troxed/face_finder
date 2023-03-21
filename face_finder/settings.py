@@ -29,7 +29,7 @@ DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = ["*"]
 
-CSRF_TRUSTED_ORIGINS=['https://*.facefinder.up.railway.app', 'https://127.0.0.1']
+CSRF_TRUSTED_ORIGINS=['https://*.facefinder.up.railway.app', 'https://*.facefinderapp.com' 'https://127.0.0.1']
 
 # Application definition
 
