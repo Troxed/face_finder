@@ -119,3 +119,4 @@ const UploadBox = ({ setImageData }) => {
 };
 
 export default UploadBox;
+
